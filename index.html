@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directory Listing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+        a {
+            text-decoration: none;
+            color: blue;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Directory Listing</h1>
+    <ul id="file-list">
+        <!-- JavaScript will populate the directory listing here -->
+    </ul>
+
+    <script>
+        // Fetch the contents of the directory
+        fetch(window.location.href)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch directory contents');
+                }
+                return response.text();
+            })
+            .then(data => {
+                // Parse the directory contents if possible
+                const parser = new DOMParser();
+                const htmlDocument = parser.parseFromString(data, "text/html");
+
+                // Extract links from the directory listing
+                const links = htmlDocument.querySelectorAll('a');
+                const fileList = document.getElementById('file-list');
+
+                links.forEach(link => {
+                    const listItem = document.createElement('li');
+                    const anchor = document.createElement('a');
+                    anchor.href = link.href;
+                    anchor.textContent = link.textContent;
+                    listItem.appendChild(anchor);
+                    fileList.appendChild(listItem);
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                const errorMessage = document.createElement('p');
+                errorMessage.textContent = 'Failed to load the directory listing.';
+                document.body.appendChild(errorMessage);
+            });
+    </script>
+</body>
+</html>
