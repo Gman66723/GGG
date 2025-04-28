@@ -1,0 +1,6 @@
+{
+  "files": [
+    { "name": "example.txt", "url": "https://example.com/example.txt" },
+    { "name": "sample.pdf", "url": "https://example.com/sample.pdf" }
+  ]
+}
