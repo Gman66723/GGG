@@ -1,6 +1,7 @@
 {
   "files": [
-    { "name": "example.txt", "url": "https://example.com/example.txt" },
-    { "name": "sample.pdf", "url": "https://example.com/sample.pdf" }
+    { "name": "Minecraftjs", "url": "https://gman66723.github.io/GGG/html/mcjs.html" },
+    { "name": "Retroarch", "url": "https://gman66723.github.io/GGG/html/webretro-standalone.html" }
+    { "name": "Index.md", "url": "https://gman66723.github.io/GGG/html/index.md" }
   ]
 }
